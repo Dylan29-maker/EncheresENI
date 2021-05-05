@@ -18,7 +18,7 @@ public class UtilisateursDaoJdbcImpl implements InterfaceDAO<Utilisateurs> {
 			+ "values (?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String SELECT_BY_ID = "select no_utilisateurs,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur"
 			+ " from utilisateurs where no_utilisateurs = ?";
-	private static final String UPDDATE = "update utilisateurs set no_utilisateurs=?,pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?,administrateur=? where no_utilisateurs=?";
+	private static final String UPDATE = "update utilisateurs set no_utilisateurs=?,pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?,administrateur=? where no_utilisateurs=?";
 	private static final String DELETE = "delete from utilisateurs where no_utilisateurs=?";
 	private static final String SELECT_ALL = "select no_utilisateurs,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur"
 			+ " from utilisateurs";
@@ -89,7 +89,7 @@ public class UtilisateursDaoJdbcImpl implements InterfaceDAO<Utilisateurs> {
 		PreparedStatement pStmt = null;
 		try {
 			cnx = JdbcTools.getConnection();
-			pStmt = cnx.prepareStatement(UPDDATE);
+			pStmt = cnx.prepareStatement(UPDATE);
 			pStmt.setString(1, data.getPseudo());
 			pStmt.setString(2, data.getNom());
 			pStmt.setString(3, data.getPrenom());
