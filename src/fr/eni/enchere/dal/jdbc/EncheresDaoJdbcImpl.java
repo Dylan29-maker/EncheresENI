@@ -2,7 +2,10 @@ package fr.eni.enchere.dal.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.enchere.bo.Encheres;
@@ -51,8 +54,20 @@ public class EncheresDaoJdbcImpl implements InterfaceDAO<Encheres> {
 
 	@Override
 	public Encheres selectById(int id) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		ResultSet rs = null;
+		Encheres enchere = null;
+		try (Connection cnx = JdbcTools.getConnection(); PreparedStatement rqt = cnx.prepareStatement(SELECT_BY_ID);) {
+			rqt.setInt(1, id);
+			rs = rqt.executeQuery();
+			if (rs.next()) {
+				enchere = new Encheres(new UtilisateursDaoJdbcImpl().selectById(rs.getInt("no_utilisateurs")),
+						new ArticlesVendusDaoJdbcImpl().selectById(rs.getInt("pseudo")),
+						rs.getDate("date_enchere").toLocalDate(), rs.getInt("montant_enchere"));
+			}
+		} catch (SQLException e) {
+			throw new DALException("selectbyid - id = " + id, e);
+		}
+		return enchere;
 	}
 
 	@Override
@@ -89,6 +104,31 @@ public class EncheresDaoJdbcImpl implements InterfaceDAO<Encheres> {
 
 	@Override
 	public List<Encheres> selectAll() throws DALException {
+		Connection cnx = null;
+		Statement rqt = null;
+		ResultSet rs = null;
+		List<Encheres> liste = new ArrayList<Encheres>();
+
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.createStatement();
+			rs = rqt.executeQuery(SELECT_ALL);
+			Encheres enchere = null;
+
+			while (rs.next()) {
+				enchere = new Encheres(new UtilisateursDaoJdbcImpl().selectById(rs.getInt("no_utilisateurs")),
+						new ArticlesVendusDaoJdbcImpl().selectById(rs.getInt("pseudo")),
+						rs.getDate("date_enchere").toLocalDate(), rs.getInt("montant_enchere"));
+				liste.add(enchere);
+			}
+		} catch (SQLException e) {
+			throw new DALException("selectAll failed - ", e);
+		}
+		return liste;
+	}
+
+	@Override
+	public List<Encheres> selectByCat(Integer no_categorie) throws DALException {
 		// TODO Auto-generated method stub
 		return null;
 	}

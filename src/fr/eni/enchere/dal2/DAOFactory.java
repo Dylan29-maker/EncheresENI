@@ -1,11 +1,14 @@
 package fr.eni.enchere.dal2;
 
+import fr.eni.enchere.bo.Articles_Vendus;
 import fr.eni.enchere.bo.Categories;
 import fr.eni.enchere.bo.Encheres;
 import fr.eni.enchere.bo.Retraits;
 import fr.eni.enchere.bo.Utilisateurs;
+import fr.eni.enchere.dal.jdbc.ArticlesVendusDaoJdbcImpl;
 import fr.eni.enchere.dal.jdbc.CategoriesDaoJdbcImpl;
 import fr.eni.enchere.dal.jdbc.EncheresDaoJdbcImpl;
+import fr.eni.enchere.dal.jdbc.RetraitsDaoJdbcImpl;
 import fr.eni.enchere.dal.jdbc.UtilisateursDaoJdbcImpl;
 
 public class DAOFactory {
@@ -22,13 +25,13 @@ public class DAOFactory {
 		return new EncheresDaoJdbcImpl();
 	}
 
-//	public static InterfaceDAO<Retraits> getRetraitsDAO(){
-//		return new RetraitsDaoJdbcImpl();
-//	}
-//	
-//	public static InterfaceDAO<Articles_Vendus> getArticlesVendusDAO(){
-//		return new RetraitsDaoJdbcImpl();
-//	}
+	public static InterfaceDAO<Retraits> getRetraitsDAO(){
+		return new RetraitsDaoJdbcImpl();
+	}
+	
+	public static InterfaceDAO<Articles_Vendus> getArticlesVendusDAO(){
+		return new ArticlesVendusDaoJdbcImpl();
+	}
 
 
 }

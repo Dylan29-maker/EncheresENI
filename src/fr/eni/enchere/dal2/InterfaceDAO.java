@@ -13,5 +13,7 @@ public interface InterfaceDAO<T> {
 	public void delete(int id) throws DALException;
 	
 	public List<T> selectAll() throws DALException;
+	
+	public List<T> selectByCat(Integer no_categorie) throws DALException;
 
 }

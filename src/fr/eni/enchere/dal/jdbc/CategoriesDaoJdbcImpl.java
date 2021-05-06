@@ -100,4 +100,10 @@ public class CategoriesDaoJdbcImpl implements InterfaceDAO<Categories> {
 		return liste;
 	}
 
+	@Override
+	public List<Categories> selectByCat(Integer no_categorie) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

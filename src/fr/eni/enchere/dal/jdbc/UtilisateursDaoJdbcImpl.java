@@ -147,4 +147,10 @@ public class UtilisateursDaoJdbcImpl implements InterfaceDAO<Utilisateurs> {
 		return liste;
 	}
 
+	@Override
+	public List<Utilisateurs> selectByCat(Integer no_categorie) throws DALException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
