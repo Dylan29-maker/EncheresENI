@@ -48,10 +48,11 @@ public class RetraitsDaoJdbcImpl implements InterfaceDAO<Retraits> {
 			pStmt.executeUpdate();
 			ResultSet rsId = pStmt.getGeneratedKeys();
 			if (rsId.next()) {
-				//util.setno_article(rsId.getInt(1));
+				//util.getArticle().getNo_article()(rsId.getObject(1));
+				
 			}
 		} catch (SQLException e) {
-			throw new DALException("Erreur à l'ajout d'un utilisateur : " + util, e);
+			throw new DALException("Erreur à l'ajout d'un retrait : " + util, e);
 		} finally {
 			try {
 				if (uneConnection != null) {
@@ -63,8 +64,6 @@ public class RetraitsDaoJdbcImpl implements InterfaceDAO<Retraits> {
 		}
 
 	}
-
-			
 
 	@Override
 	public Retraits selectById(int id) throws DALException {
@@ -102,7 +101,7 @@ public class RetraitsDaoJdbcImpl implements InterfaceDAO<Retraits> {
 	
 			pStmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException("update Utilisateur failed - " + data, e);
+			throw new DALException("update Retraits failed - " + data, e);
 		}
 
 	}
