@@ -16,4 +16,6 @@ public interface UtilisateurManager {
 	
 	public List<Utilisateurs> getAllUtilisateurs();
 
+	public void VerifUtilisateur(String pseudo, String email) throws ManagerException;
+
 }

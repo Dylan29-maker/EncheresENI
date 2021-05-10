@@ -3,6 +3,7 @@ package fr.eni.enchere.bll;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import fr.eni.enchere.bo.Utilisateurs;
 import fr.eni.enchere.dal2.DALException;
 import fr.eni.enchere.dal2.DAOFactory;
@@ -64,4 +65,43 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		return liste;
 	}
 
+	public void VerifUtilisateur (String pseudo, String email) throws ManagerException {
+		
+		List<Utilisateurs> lstUtilisateurs;
+		lstUtilisateurs = getAllUtilisateurs();
+		for(Utilisateurs u : lstUtilisateurs) {
+			if(pseudo.equals(u.getPseudo()) || email.equals(u.getEmail())) {
+				throw new ManagerException("Erreur : Ce pseudo ou cet email est déjà prit");		
+			}
+		}
+		
+		
+	}
+	
 }
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -10,11 +10,13 @@
 <p style="color:red">${erreur}</p>
 <form method="post" action="LoginServlet">
 <p style="color:black"> ENI-ENCHERES :</p>
-		<h1><center>Identifiant : <input type="text" name="login"></center></h1><br />
-		<h2><center>Mot de passe : <input type="password" name="pass"></center></h2><br />
-		<h3><center><input type="submit" value="Se connecter.." style="width:130px"></center></h3><br/>
-		<h4><center><input type="submit" value="Créer un compte" style="width:200px"></center></h4><br/>
-	</form>
+	<h1><center>Identifiant : <input type="text" name="login"></center></h1><br/>
+	<center>Mot de passe : <input type="password" name="pass"></center><<br />
+	<center><input type="submit" value="Se connecter.." style="width:130px"></center><br/>
+</form>
+<form method ="post" action="MonInscriptionServlet">
+	<center><input type="submit" value="Créer un compte" style="width:200px"></center><br/>
+</form>	
 </body>
 </html>
 
