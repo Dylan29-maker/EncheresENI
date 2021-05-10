@@ -1,0 +1,14 @@
+git fetch
+
+git checkout dev2
+
+git merge dylanBranche
+git push (dev2 vers github)
+
+// de ton côté 
+git fetch (rapatrie les modifs de Dylan dans dev2 sur ton poste)
+
+git checkout aurelienIHM
+
+
+git merge dev2
