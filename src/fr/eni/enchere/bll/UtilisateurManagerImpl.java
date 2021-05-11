@@ -70,7 +70,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	public List<Utilisateurs> getAllUtilisateurs() {
 		List<Utilisateurs> liste = new ArrayList<Utilisateurs>();
 		try {
-			dao.selectAll();
+			liste = dao.selectAll();
 		} catch (DALException e) {
 			new ManagerException("Erreur lors de l'affichage des utilisateur");
 		}

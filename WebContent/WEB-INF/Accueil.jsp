@@ -13,7 +13,9 @@
 		<p style="color: black">ENI-ENCHERES :</p>
 		<div style="text-align: right">
 			<p style="color: blue;">Encheres</p>
+			<a href="<%=request.getContextPath()+"/VenteServlet"%>">
 			<p style="color: blue;">Vendre un article</p>
+			</a>
 			<p style="color: blue;">Profil</p>
 		</div>
 		<h2>
@@ -68,7 +70,7 @@
 		<br />
 
 		<c:forEach items="${model.listeArticles}" var="article">
-			<p>${article.description }</p>
+			<p>${article.nom_article }</p>
 			<p>Prix : ${article.prix_initial }</p>
 			<p>Fin de l'enchere : ${article.date_fin_encheres }</p>
 			<p>Vendeur : ${article.utilisateur.nom }</p>

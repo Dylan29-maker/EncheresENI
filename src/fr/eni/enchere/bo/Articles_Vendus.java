@@ -33,6 +33,18 @@ public class Articles_Vendus {
 		this.categorie = categorie;
 	}
 
+	public Articles_Vendus(String nom_article, String description, LocalDate date_debut_encheres,
+			LocalDate date_fin_encheres, Integer prix_initial, Utilisateurs utilisateur, Categories categorie) {
+		super();
+		this.nom_article = nom_article;
+		this.description = description;
+		this.date_debut_encheres = date_debut_encheres;
+		this.date_fin_encheres = date_fin_encheres;
+		this.prix_initial = prix_initial;
+		this.utilisateur = utilisateur;
+		this.categorie = categorie;
+	}
+
 	public Integer getNo_article() {
 		return no_article;
 	}

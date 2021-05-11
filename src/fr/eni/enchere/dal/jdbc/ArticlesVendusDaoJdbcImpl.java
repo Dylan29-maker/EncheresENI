@@ -14,8 +14,8 @@ import fr.eni.enchere.dal2.InterfaceDAO;
 
 public class ArticlesVendusDaoJdbcImpl implements InterfaceDAO<Articles_Vendus> {
 
-	private static final String INSERT = "insert into ARTICLES_VENDUS(nom_article,description,date_debut_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie)"
-			+ "values(?,?,?,?,?,?,?,?)";
+	private static final String INSERT = "insert into ARTICLES_VENDUS(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,no_utilisateur,no_categorie)"
+			+ "values(?,?,?,?,?,?,?)";
 
 	private static final String SELECT_BY_ID = "Select no_article(no_article,nom_article,description,date_debut_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie)"
 			+ "from ARTICLES_VENDUS where no_article=?";
@@ -44,9 +44,8 @@ public class ArticlesVendusDaoJdbcImpl implements InterfaceDAO<Articles_Vendus> 
 			pStmt.setDate(3, java.sql.Date.valueOf(util.getDate_debut_encheres()));
 			pStmt.setDate(4, java.sql.Date.valueOf(util.getDate_fin_encheres()));
 			pStmt.setInt(5, util.getPrix_initial());
-			pStmt.setInt(6, util.getPrix_vente());
-			pStmt.setObject(7, util.getUtilisateur().getNo_utilisateur());
-			pStmt.setObject(8, util.getCategorie().getNo_categorie());
+			pStmt.setObject(6, util.getUtilisateur().getNo_utilisateur());
+			pStmt.setObject(7, util.getCategorie().getNo_categorie());
 
 			pStmt.executeUpdate();
 			ResultSet rsId = pStmt.getGeneratedKeys();
