@@ -10,7 +10,20 @@ import fr.eni.enchere.dal2.InterfaceDAO;
 
 public class ArticlesVendusManagerImpl implements ArticlesVendusManager {
 
-	private InterfaceDAO<Articles_Vendus> dao = DAOFactory.getArticlesVendusDAO();
+	private InterfaceDAO<Articles_Vendus> dao;
+	private static ArticlesVendusManagerImpl instance;
+
+	private ArticlesVendusManagerImpl() {
+		this.dao = DAOFactory.getArticlesVendusDAO();
+	}
+
+	public static ArticlesVendusManagerImpl getInstance() {
+
+		if (instance == null) {
+			instance = new ArticlesVendusManagerImpl();
+		}
+		return instance;
+	}
 
 	@Override
 	public void ajoutArticle(Articles_Vendus article) {

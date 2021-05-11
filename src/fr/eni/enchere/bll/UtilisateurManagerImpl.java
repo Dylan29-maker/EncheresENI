@@ -3,7 +3,6 @@ package fr.eni.enchere.bll;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import fr.eni.enchere.bo.Utilisateurs;
 import fr.eni.enchere.dal2.DALException;
 import fr.eni.enchere.dal2.DAOFactory;
@@ -11,7 +10,20 @@ import fr.eni.enchere.dal2.InterfaceDAO;
 
 public class UtilisateurManagerImpl implements UtilisateurManager {
 
-	private InterfaceDAO<Utilisateurs> dao = DAOFactory.getUtilisateursDAO();
+	private InterfaceDAO<Utilisateurs> dao;
+	private static UtilisateurManagerImpl instance;
+
+	private UtilisateurManagerImpl() {
+		this.dao = DAOFactory.getUtilisateursDAO();
+	}
+
+	public static UtilisateurManagerImpl getInstance() {
+
+		if (instance == null) {
+			instance = new UtilisateurManagerImpl();
+		}
+		return instance;
+	}
 
 	@Override
 	public void ajoutUtilisateur(Utilisateurs util) {
@@ -65,43 +77,16 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		return liste;
 	}
 
-	public void VerifUtilisateur (String pseudo, String email) throws ManagerException {
-		
+	public void VerifUtilisateur(String pseudo, String email) throws ManagerException {
+
 		List<Utilisateurs> lstUtilisateurs;
 		lstUtilisateurs = getAllUtilisateurs();
-		for(Utilisateurs u : lstUtilisateurs) {
-			if(pseudo.equals(u.getPseudo()) || email.equals(u.getEmail())) {
-				throw new ManagerException("Erreur : Ce pseudo ou cet email est déjà prit");		
+		for (Utilisateurs u : lstUtilisateurs) {
+			if (pseudo.equals(u.getPseudo()) || email.equals(u.getEmail())) {
+				throw new ManagerException("Erreur : Ce pseudo ou cet email est déjà prit");
 			}
 		}
-		
-		
+
 	}
-	
+
 }
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

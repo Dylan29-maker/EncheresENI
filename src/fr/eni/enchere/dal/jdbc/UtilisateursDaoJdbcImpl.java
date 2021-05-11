@@ -16,11 +16,11 @@ public class UtilisateursDaoJdbcImpl implements InterfaceDAO<Utilisateurs> {
 
 	private static final String INSERT = "insert into utilisateurs(pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur)"
 			+ "values (?,?,?,?,?,?,?,?,?,?,?)";
-	private static final String SELECT_BY_ID = "select no_utilisateurs,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur"
-			+ " from utilisateurs where no_utilisateurs = ?";
-	private static final String UPDATE = "update utilisateurs set no_utilisateurs=?,pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?,administrateur=? where no_utilisateurs=?";
-	private static final String DELETE = "delete from utilisateurs where no_utilisateurs=?";
-	private static final String SELECT_ALL = "select no_utilisateurs,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur"
+	private static final String SELECT_BY_ID = "select no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur"
+			+ " from utilisateurs where no_utilisateur = ?";
+	private static final String UPDATE = "update utilisateurs set no_utilisateur=?,pseudo=?,nom=?,prenom=?,email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=?,credit=?,administrateur=? where no_utilisateurs=?";
+	private static final String DELETE = "delete from utilisateurs where no_utilisateur=?";
+	private static final String SELECT_ALL = "select no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur"
 			+ " from utilisateurs";
 
 	@Override
@@ -72,7 +72,7 @@ public class UtilisateursDaoJdbcImpl implements InterfaceDAO<Utilisateurs> {
 			rqt.setInt(1, id);
 			rs = rqt.executeQuery();
 			if (rs.next()) {
-				util = new Utilisateurs(rs.getInt("no_utilisateurs"), rs.getString("pseudo"), rs.getString("nom"),
+				util = new Utilisateurs(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"),
 						rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
 						rs.getString("code_postal"), rs.getString("ville"), rs.getString("mot_de_passe"),
 						rs.getInt("credit"), rs.getBoolean("administrateur"));

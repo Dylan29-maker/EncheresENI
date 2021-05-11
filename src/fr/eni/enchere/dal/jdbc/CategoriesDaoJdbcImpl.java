@@ -17,7 +17,7 @@ public class CategoriesDaoJdbcImpl implements InterfaceDAO<Categories> {
 	private static final String INSERT = "insert into categories(libelle)" + "values (?)";
 	private static final String SELECT_BY_ID = "select no_categorie, libelle"
 			+ " from categories where no_categorie = ?";
-	private static final String SELECT_ALL = "select no_categorie, libelle" + " from categories";
+	private static final String SELECT_ALL = "select no_categorie, libelle from categories";
 
 	@Override
 	public void insert(Categories util) throws DALException {

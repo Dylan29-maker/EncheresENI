@@ -9,8 +9,20 @@ import fr.eni.enchere.dal2.DAOFactory;
 import fr.eni.enchere.dal2.InterfaceDAO;
 
 public class RetraitsManagerImpl implements RetraitsManager {
-	private InterfaceDAO<Retraits> dao = DAOFactory.getRetraitsDAO();
+	private InterfaceDAO<Retraits> dao;
+	private static RetraitsManagerImpl instance;
 
+	private RetraitsManagerImpl() {
+		this.dao = DAOFactory.getRetraitsDAO();
+	}
+
+	public static RetraitsManagerImpl getInstance() {
+
+		if (instance == null) {
+			instance = new RetraitsManagerImpl();
+		}
+		return instance;
+	}
 
 	@Override
 	public void ajoutRetraits(Retraits retraits) {
@@ -19,13 +31,13 @@ public class RetraitsManagerImpl implements RetraitsManager {
 		} catch (DALException e) {
 			new ManagerException("Erreur lors de l'ajout d'un retrait");
 		}
-		
+
 	}
 
 	@Override
 	public Retraits getRetraits(Integer no_article) {
 		Retraits retrait = null;
-		
+
 		try {
 			retrait = dao.selectById(no_article);
 		} catch (DALException e) {
@@ -41,7 +53,7 @@ public class RetraitsManagerImpl implements RetraitsManager {
 		} catch (DALException e) {
 			new ManagerException("Erreur lors de la modif d'un retrait");
 		}
-		
+
 	}
 
 	@Override
@@ -51,13 +63,13 @@ public class RetraitsManagerImpl implements RetraitsManager {
 		} catch (DALException e) {
 			new ManagerException("Erreur lors de la supression d'un retrait");
 		}
-		
+
 	}
 
 	@Override
 	public List<Retraits> getAllRetraits() {
 		List<Retraits> liste = new ArrayList<Retraits>();
-		
+
 		try {
 			liste = dao.selectAll();
 		} catch (DALException e) {

@@ -10,13 +10,29 @@ import fr.eni.enchere.dal2.InterfaceDAO;
 
 public class CategorieManagerImpl implements CategorieManager {
 
-	private InterfaceDAO<Categories> dao = DAOFactory.getCategoriesDAO();
+	private InterfaceDAO<Categories> dao;
+	private static CategorieManagerImpl instance;
 
+	
+	private  CategorieManagerImpl() {
+		this.dao = DAOFactory.getCategoriesDAO();
+	}
+	
+	
+	public static CategorieManagerImpl getInstance() {
+		
+		if (instance==null) {
+			instance = new CategorieManagerImpl();
+		}
+		
+		return instance;
+	}
+	
 	@Override
 	public List<Categories> getAllCategories() {
 		List<Categories> liste = new ArrayList<Categories>();
 		try {
-			dao.selectAll();
+			liste = dao.selectAll();
 		} catch (DALException e) {
 			new ManagerException("Erreur lors de l'affichage de la liste des catégories");
 		}

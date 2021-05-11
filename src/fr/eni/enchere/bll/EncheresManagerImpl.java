@@ -10,7 +10,20 @@ import fr.eni.enchere.dal2.InterfaceDAO;
 
 public class EncheresManagerImpl implements EncheresManager {
 
-	private InterfaceDAO<Encheres> dao = DAOFactory.getEncheresDAO();
+	private InterfaceDAO<Encheres> dao;
+	private static EncheresManagerImpl instance;
+
+	private EncheresManagerImpl() {
+		this.dao = DAOFactory.getEncheresDAO();
+	}
+
+	public static EncheresManagerImpl getInstance() {
+
+		if (instance == null) {
+			instance = new EncheresManagerImpl();
+		}
+		return instance;
+	}
 
 	@Override
 	public void ajoutEnchere(Encheres enchere) {
