@@ -57,7 +57,6 @@ public class VenteServlet extends HttpServlet {
 
 		if (request.getParameter("categories") != null) {
 			if (request.getParameter("utilisateurs") != null) {
-
 				Integer utilisateur = Integer.parseInt(request.getParameter("utilisateurs"));
 				Integer categorie = Integer.parseInt(request.getParameter("categories"));
 				String article = request.getParameter("article");
@@ -69,16 +68,18 @@ public class VenteServlet extends HttpServlet {
 				Utilisateurs util = managerUtil.getUtilisateur(utilisateur);
 				Articles_Vendus articleV = new Articles_Vendus(article, description, dde, dfe, prix, util, cat);
 
-				String rue = request.getParameter("rue");
-				String cp = request.getParameter("cp");
-				String ville = request.getParameter("ville");
-				Retraits retrait = new Retraits(articleV, rue, cp, ville);
-
-				managerRetrait.ajoutRetraits(retrait);
+				// Retraits retrait = new Retraits(articleV, rue, cp, ville);
+				request.setAttribute("rue", util.getRue());
+				request.setAttribute("cp", util.getCode_postal());
+				request.setAttribute("ville", util.getVille());
+				
+				// managerRetrait.ajoutRetraits(retrait);
 				managerArt.ajoutArticle(articleV);
 				model.setResult("Vente ajoutée!");
 			}
 		}
+
+
 
 		request.setAttribute("model", model);
 		request.getRequestDispatcher("WEB-INF/Vente.jsp").forward(request, response);

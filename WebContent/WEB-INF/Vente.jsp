@@ -30,16 +30,30 @@
 		Mise à prix : <input type="number" name="prix" value="${prix }"><br><br>
 		Début de l'enchère : <input type="date" name="debutEnchere" value="${debutEnchere }"><br><br>
 		Fin de l'enchère : <input type="date" name="finEnchere" value="${finEnchere }"><br><br>
-		
-		<p>Retraits :</p>
-		Rue : <input type="text" name="rue" value="${rue}"><br><br>
-		Code Postal : <input type="text" name="cp" value="${cp}"><br><br>
-		Ville : <input type="text" name="ville" value="${ville}"><br><br>
-		
 		<input type="submit" value="Enregistrer"> ${model.result }
 		<a href="<%=request.getContextPath()+"/AccueilServlet"%>">
 		<p style="color: blue;">Annuler</p>
 		</a>
+		<p>Retraits :</p>
+		<p>
+		<% 
+            String rue = (String) request.getAttribute("rue");
+            out.println( rue );
+         %>
+         </p>
+		<p>
+		<% 
+            String cp = (String) request.getAttribute("cp");
+            out.println( cp );
+         %>
+         </p>
+		<p>
+		<% 
+            String ville = (String) request.getAttribute("ville");
+            out.println( ville );
+         %>
+         </p>
+		
 		</center>
 </body>
 </html>

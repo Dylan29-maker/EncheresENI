@@ -17,11 +17,13 @@ public class ArticlesVendusDaoJdbcImpl implements InterfaceDAO<Articles_Vendus> 
 	private static final String INSERT = "insert into ARTICLES_VENDUS(nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,no_utilisateur,no_categorie)"
 			+ "values(?,?,?,?,?,?,?)";
 
-	private static final String SELECT_BY_ID = "Select no_article(no_article,nom_article,description,date_debut_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie)"
-			+ "from ARTICLES_VENDUS where no_article=?";
+	private static final String SELECT_BY_ID = "select no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie"
+			+ " from ARTICLES_VENDUS where no_article=?";
 
-	private static final String UPDATE = "Update ARTICLES_VENDUS set no_article=?,nom_article=?,description=?,date_debut_encheres=?,prix_initial=?,prix_vente=?,no_utilisateur=?,no_categorie=?, where no_article=?";
-
+	// private static final String UPDATE = "Update ARTICLES_VENDUS set
+	// no_article=?,nom_article=?,description=?,date_debut_encheres=?,date_fin_encheres=?,prix_initial=?,prix_vente=?,no_utilisateur=?,no_categorie=?
+	// where no_article=?";
+	private static final String UPDATE2 = "update ARTICLES_VENDUS set prix_vente=? where no_article=?";
 	private static final String DELETE = "delete from ARTICLES_VENDUS where no_article=?";
 
 	private static final String SELECT_ALL = "Select no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_utilisateur,no_categorie from ARTICLES_VENDUS";
@@ -76,7 +78,7 @@ public class ArticlesVendusDaoJdbcImpl implements InterfaceDAO<Articles_Vendus> 
 			if (rs.next()) {
 				util = new Articles_Vendus(rs.getInt("no_article"), rs.getString("nom_article"),
 						rs.getString("description"), rs.getDate("date_debut_encheres").toLocalDate(),
-						rs.getDate("date_fin_enchecres").toLocalDate(), rs.getInt("prix_initial"),
+						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"),
 						rs.getInt("prix_vente"), new UtilisateursDaoJdbcImpl().selectById(rs.getInt("no_utilisateur")),
 						new CategoriesDaoJdbcImpl().selectById(rs.getInt("no_categorie")));
 
@@ -93,7 +95,7 @@ public class ArticlesVendusDaoJdbcImpl implements InterfaceDAO<Articles_Vendus> 
 		PreparedStatement pStmt = null;
 		try {
 			cnx = JdbcTools.getConnection();
-			pStmt = cnx.prepareStatement(UPDATE);
+			pStmt = cnx.prepareStatement(UPDATE2);
 			pStmt.setInt(1, data.getNo_article());
 			pStmt.setString(2, data.getNom_article());
 			pStmt.setString(3, data.getDescription());
@@ -141,8 +143,7 @@ public class ArticlesVendusDaoJdbcImpl implements InterfaceDAO<Articles_Vendus> 
 				article = new Articles_Vendus(rs.getInt("no_article"), rs.getString("nom_article"),
 						rs.getString("description"), rs.getDate("date_debut_encheres").toLocalDate(),
 						rs.getDate("date_fin_encheres").toLocalDate(), rs.getInt("prix_initial"),
-						rs.getInt("prix_vente"),
-						new UtilisateursDaoJdbcImpl().selectById(rs.getInt("no_utilisateur")),
+						rs.getInt("prix_vente"), new UtilisateursDaoJdbcImpl().selectById(rs.getInt("no_utilisateur")),
 						new CategoriesDaoJdbcImpl().selectById(rs.getInt("no_categorie")));
 
 				liste.add(article);

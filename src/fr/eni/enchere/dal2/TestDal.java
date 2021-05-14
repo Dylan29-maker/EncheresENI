@@ -20,7 +20,7 @@ public class TestDal {
 			UtilisateursDaoJdbcImpl instance3 = new UtilisateursDaoJdbcImpl();
 
 			try {
-				System.out.println(instance3.selectAll());
+				System.out.println(instance2.selectById(4));
 			} catch (DALException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

@@ -56,7 +56,7 @@ public class AccueilServlet extends HttpServlet {
 			for (Categories cat : managerCat.getAllCategories()) {
 				if (categorie == cat.getNo_categorie()) {
 					model.setListeArticles(managerArt.getArticlesCat(categorie));
-				} 
+				}
 			}
 		}
 
@@ -71,6 +71,11 @@ public class AccueilServlet extends HttpServlet {
 		} else if ("Ventes".equals(choix)) {
 			System.out.println("cest vente");
 		}
+
+		// affichage du détail d'une vente
+		
+		
+		// dispatcher
 		request.setAttribute("model", model);
 		request.getRequestDispatcher("WEB-INF/Accueil.jsp").forward(request, response);
 

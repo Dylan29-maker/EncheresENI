@@ -70,7 +70,9 @@
 		<br />
 
 		<c:forEach items="${model.listeArticles}" var="article">
-			<p>${article.nom_article }</p>
+			<a href="<%=request.getContextPath()+"/DetailVenteServlet?id="%>${article.no_article}">
+			<p>${article.no_article } - ${article.nom_article }</p>
+			</a>
 			<p>Prix : ${article.prix_initial }</p>
 			<p>Fin de l'enchere : ${article.date_fin_encheres }</p>
 			<p>Vendeur : ${article.utilisateur.nom }</p>
